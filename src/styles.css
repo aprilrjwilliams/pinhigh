@@ -23,7 +23,7 @@ body.page {
 #mainNav {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background-color: #212529;
+  /* background-color: #212529; */
 }
 #mainNav .navbar-toggler {
   padding: 0.75rem;
@@ -852,4 +852,118 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#400a6f",endCo
   transition: transform 0.4s;
   transition: transform 0.4s, -webkit-transform 0.4s;
 }
+
+footer.opt3{
+    background: #222222;
+    color: #fff;
+    padding: 1.5rem 0;
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+footer.opt3 .social {
+  font-size: 0;
+  padding: 3rem;
+}
+
+footer.opt3 .social ul {
+  font-size: 0;
+}
+
+footer.opt3 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer.opt3 ul li {
+  display: inline-block;
+  font-size: 1.4rem;
+}
+
+ul, ul li, ul li a {
+  outline: none;
+}
+
+
+footer.opt3 .social ul li {
+  font-size: 0;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+footer.opt3 a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer.opt3 .social ul li i[class*="brands"] {
+  font-size: 1.9rem;
+  margin: 0 10px;
+  color: #c9b58c;
+}
+
+footer.opt3 > div {
+  padding: 0.5rem 3rem;
+}
+
+footer.opt3 {
+  background: #222222;
+  color: #fff;
+  padding: 1.5rem 0;
+  font-size: 1.4rem;
+  /* text-align: center; */
+  }
+  footer.opt3 > div {
+    padding: 0.5rem 3rem; }
+    @media (max-width: 767px) {
+      footer.opt3 > div {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem; } }
+    footer.opt3 > div:last-child {
+      padding-bottom: 2.7rem; }
+  footer.opt3 ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    }
+    footer.opt3 ul li {
+      display: inline-block;
+      font-size: 1.4rem;
+      }
+      @media (max-width: 767px) {
+        footer.opt3 ul li {
+          width: 100%;
+          } }
+      footer.opt3 ul li i[class*="fa"] {
+        margin-right: 5px; }
+      footer.opt3 ul li:nth-last-child(n+2) {
+        margin-bottom: 1rem; }
+        @media (min-width: 768px) {
+          footer.opt3 ul li:nth-last-child(n+2) {
+            margin-bottom: 0;
+            margin-right: 3.5rem;
+            } }
+  footer.opt3 a {
+    color: #fff;
+    text-decoration: none; }
+    footer.opt3 a:hover, footer.opt3 a:focus {
+      color: #fff;
+      text-decoration: underline; }
+  footer.opt3 .social {
+    font-size: 0;
+    padding: 3rem; }
+    footer.opt3 .social ul {
+      font-size: 0; }
+      footer.opt3 .social ul li {
+        font-size: 0;
+        letter-spacing: 0;
+        margin: 0; }
+        @media (max-width: 767px) {
+          footer.opt3 .social ul li {
+            width: auto; } }
+        footer.opt3 .social ul li i[class*="fa"] {
+          font-size: 1.9rem;
+          margin: 0 10px;
+          color: #c9b58c; }
 
