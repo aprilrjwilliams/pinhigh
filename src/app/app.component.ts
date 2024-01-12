@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterModule } from '@angular/router';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 
 @Component({
@@ -8,7 +8,8 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet
+    RouterOutlet,
+    RouterModule
   ],
   // providers: [provideHttpClient()],
   templateUrl: './app.component.html',
