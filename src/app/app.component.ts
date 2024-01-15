@@ -34,6 +34,6 @@ export class AppComponent {
   ngOnInit(){
     console.log('here ');
     console.log('bookings ', this.bookings);
-    this.refreshBookings();
+    // this.refreshBookings();
   }
 }

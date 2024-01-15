@@ -8,6 +8,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 export const routes: Routes = [
     {
@@ -37,6 +38,10 @@ export const routes: Routes = [
     {
       path: 'registration',
       component: RegistrationComponent
+    },
+    {
+      path: 'faq',
+      component: FaqComponent
     },
     { path: '**', redirectTo: '' }
 ];

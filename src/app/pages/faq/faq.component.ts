@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterModule } from '@angular/router';
 
-
 @Component({
-  selector: 'app-contact',
+  selector: 'app-faq',
   standalone: true,
   imports: [RouterModule],
-  templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css'
+  templateUrl: './faq.component.html',
+  styleUrl: './faq.component.css'
 })
-export class ContactComponent {
+export class FaqComponent {
 
 }

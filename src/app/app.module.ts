@@ -10,6 +10,7 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
+import { FaqComponent } from './pages/faq/faq.component';
 
 import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 
@@ -23,11 +24,9 @@ import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/
   imports: [ 
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   declarations: [  
-    HomeComponent,
-    AboutComponent 
   ],
   bootstrap: [  
   ]
