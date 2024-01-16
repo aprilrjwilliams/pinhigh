@@ -1,5 +1,6 @@
 @charset "UTF-8";
 html {
+  font-size: calc((10 / 16) * 1em);
   height: 100%;
   margin: 0;
   padding: 0;
@@ -21,6 +22,7 @@ body.page {
 }
 
 #mainNav {
+  /* font-size: calc((10 / 16) * 1em); */
   padding-top: 1rem;
   padding-bottom: 1rem;
   /* background-color: #212529; */
@@ -50,7 +52,7 @@ body.page {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 0.95rem;
+  /* font-size: 0.95rem; */
   color: black;
   letter-spacing: 0.0625em;
 }
@@ -163,9 +165,7 @@ header.masthead .masthead-heading {
   }
 }
 
-h1,
-.h1,
-.priv-hm-title {
+h1, .h1, .priv-hm-title {
   font-family: "Taviraj", serif;
   color: #000;
   font-size: 4rem;
@@ -173,17 +173,52 @@ h1,
   line-height: 1.2;
   margin-bottom: 0.4em;
   letter-spacing: 0.2rem;
-  text-transform: uppercase;
-}
+  text-transform: uppercase; }
+  .content .mpContent h1, .content .mpContent .h1, .content .mpContent .priv-hm-title {
+    margin-bottom: 0.7em; }
 
-.content .mpContent h1,
-.content .mpContent .h1,
-.content .mpContent .priv-hm-title {
-  margin-bottom: 0.7em;
-}
+h2, .h2, .calendar.opt1 div[id$="EventsWrapper"] .event-info .event-title {
+  font-family: "Taviraj", serif;
+  color: #000;
+  font-size: 3rem;
+  font-weight: 500;
+  line-height: 1.27;
+  margin-bottom: 1em;
+  letter-spacing: 0;
+  text-transform: none; }
 
-h6,
-.h6 {
+h3, .articles.opt1 .priv-hm-title, .h3, .thumbs-album .plgHeaderBar b, .thumbs-album .pluginTitleBar, .card-deck.opt2 .card-img-overlay .mpContent {
+  font-family: "Taviraj", serif;
+  color: #000;
+  font-size: 2.4rem;
+  font-weight: 500;
+  line-height: 1.42;
+  margin-bottom: 0.6em;
+  letter-spacing: 0;
+  text-transform: none;
+  }
+
+h4, .formSection .rosterletteroff, .h4 {
+  font-family: "Taviraj", serif;
+  color: #000;
+  font-size: 2.1rem;
+  font-weight: 600;
+  line-height: 1.27;
+  margin-bottom: 0.6em;
+  letter-spacing: 0;
+  text-transform: none; }
+
+h5, .h5 {
+  font-family: "Taviraj", serif;
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 600;
+  line-height: 1.22;
+  margin-bottom: 0.6em;
+  letter-spacing: 0;
+  text-transform: none; }
+
+h6, .h6 {
   font-family: "Taviraj", serif;
   color: #000;
   font-size: 1.6rem;
@@ -191,8 +226,7 @@ h6,
   line-height: 1.31;
   margin-bottom: 2em;
   letter-spacing: 0.3rem;
-  text-transform: uppercase;
-}
+  text-transform: uppercase; }
 
 p {
   margin: 0;
@@ -201,7 +235,12 @@ p {
   color: #555;
   letter-spacing: 0;
   line-height: 1.88;
-  font-weight: 300;
+  font-weight: 300; }
+
+.content .mpContent h1,
+.content .mpContent .h1,
+.content .mpContent .priv-hm-title {
+  margin-bottom: 0.7em;
 }
 
 #main {
@@ -764,93 +803,6 @@ p {
     justify-content: center;
     flex-flow: row wrap;
     display: flex;
-}
-
-
-.newsCard {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  background-color: #fff;
-  color:#fff;
-  overflow: hidden;
-  border-radius: 6px;
-}
-
-figure img {
-display: block;
-object-fit: cover !important;
-object-position: center center !important; height: 100%;
-width: 100%;
-}
-
-.overlay{
-  background: rgb(40,26,54);
-  background: -moz-linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
-  background: -webkit-linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
-  background: linear-gradient(0deg, rgba(40,26,54,1) 0%, rgba(89,59,116,0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#281a36",endColorstr="#593b74",GradientType=1);
-  display: block;
-  position: absolute;
-  height: 200px;
-  width: 100%;
-  bottom: 0;
-  z-index: 3;
-}
-
-.newsCaption {
-  position: absolute;
-  top: auto;
-  bottom: 31px;
-  left: 0;
-  width: 100%;
-  height: 35%;
-  z-index: 10;
-  padding: 15px;
-  -webkit-transform: translateY(80%);
-  transform: translateY(80%);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-transition:  -webkit-transform 0.4s;
-  transition:  -webkit-transform 0.4s;
-  transition: transform 0.4s;
-  transition: transform 0.4s,  -webkit-transform 0.4s;
-}
-.newsCaption i{font-size: 24px;}
-
-.newsCaption-title {
-  margin-top: 0px;
-}
-.newsCaption-content {
-  margin: 0;
-}
-
-.newsCaption-link {
-  color: #fff;
-  text-decoration: underline;
-  opacity: .8;
-  -webkit-transition-property: opacity;
-  transition-property: opacity;
-  -webkit-transition-duration: 0.15s;
-          transition-duration: 0.15s;
-  -webkit-transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
-          transition-timing-function: cubic-bezier(0.39, 0.58, 0.57, 1);
-}
-.news-Slide-up:hover .overlay{ background: rgb(64,10,111);
-background: -moz-linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
-background: -webkit-linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
-background: linear-gradient(0deg, rgba(64,10,111,1) 0%, rgba(89,59,116,0) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#400a6f",endColorstr="#593b74",GradientType=1);
-}
-
-.news-Slide-up:hover .newsCaption {
-
-  -webkit-transform: translateY(0px);
-          transform: translateY(0px);
-  -webkit-transition:  -webkit-transform 0.4s;
-  transition: -webkit-transform 0.4s;
-  transition: transform 0.4s;
-  transition: transform 0.4s, -webkit-transform 0.4s;
 }
 
 footer.opt3{

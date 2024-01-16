@@ -1,0 +1,48 @@
+.form-floating {
+    margin-bottom: 10px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 1rem;
+}
+
+.form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+label{
+    font-size: initial;
+}
+
+.form-control{
+    border-radius: 0px;
+    border: 2px solid #e4cd9e;
+}
+
+.form-control:focus{
+    box-shadow: none;
+}
+
+button, button:hover{
+    background-color: #e4cd9e;
+    color: black;
+    border: none;
+}
+
+.form-check-input[type=checkbox]{
+    border-radius: 0%;
+    border-color: #e4cd9e;
+}
+
+.form-check-input:focus {
+    border-color: #e4cd9e;
+    outline: 0;
+    box-shadow: none;
+}
+
+.form-check-input:checked{
+    background-color: #e4cd9e;
+}

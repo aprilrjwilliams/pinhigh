@@ -9,6 +9,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { BookingsComponent } from './pages/bookings/bookings.component';
 
 export const routes: Routes = [
     {
@@ -42,6 +43,10 @@ export const routes: Routes = [
     {
       path: 'faq',
       component: FaqComponent
+    },
+    {
+      path: 'bookings',
+      component: BookingsComponent
     },
     { path: '**', redirectTo: '' }
 ];
