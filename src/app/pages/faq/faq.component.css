@@ -1,3 +1,11 @@
+.container{
+    margin: 5rem auto;
+}
+
+p {
+    margin: 0 0 1.88em;
+}
+
 .accordion-item {
     border: 2px solid #e4cd9e !important;
 }
@@ -9,12 +17,12 @@
 
 .accordion-button {
     border: 2px solid #e4cd9e !important;
+    font-size: 2rem;
 }
 
 .accordion-button:not(.collapsed){
-    background-color: inherit;
-    border: none;
-    border-bottom: 2px solid #e4cd9e !important;
+    background: #e4cd9e !important;
+    border: 2px solid #e4cd9e !important;
 }
 
 .accordion-button:focus {

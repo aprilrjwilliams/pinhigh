@@ -306,8 +306,7 @@ p {
 }
 .nav-tabs .nav-link:hover,
 .nav-tabs .nav-link:focus {
-  isolation: isolate;
-  border-color: var(--bs-nav-tabs-link-hover-border-color);
+  border-color: transparent;
 }
 .nav-tabs .nav-link.disabled,
 .nav-tabs .nav-link:disabled {

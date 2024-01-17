@@ -61,3 +61,7 @@ p {
 .form-group.row{
     margin-bottom: 10px;
 }
+
+.form-control{
+    font-size: initial;
+}

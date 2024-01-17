@@ -1,3 +1,15 @@
+.login-wrap {
+    padding: 15px 30px;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+.login-instruct{
+    text-align: center;
+    padding-bottom: 17px;
+}
+
 .form-floating {
     margin-bottom: 10px;
 }
@@ -45,4 +57,13 @@ button, button:hover{
 
 .form-check-input:checked{
     background-color: #e4cd9e;
+}
+
+.form-control{
+    min-height: 50px;
+    font-size: 2rem;
+}
+
+.btn{
+    font-size: 1.5rem;
 }
