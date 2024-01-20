@@ -11,24 +11,28 @@
     the website
   </p>
   <div class="form-signin w-100 m-auto">
-    <form>
-      <div class="form-floating">
-        <input
-          type="email"
-          class="form-control"
-          id="floatingInput"
-          placeholder="name@example.com"
-        />
-        <label for="floatingInput">Email address</label>
-      </div>
-      <div class="form-floating">
-        <input
-          type="password"
-          class="form-control"
-          id="floatingPassword"
-          placeholder="Password"
-        />
-        <label for="floatingPassword">Password</label>
+    <form (ngSubmit)="onSubmit()" [formGroup]='loginForm'>
+      <div class="form-group">
+        <div class="form-floating">
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="email"
+            formControlName="email"
+          />
+          <label for="email">Email</label>
+        </div>
+        <div class="form-floating">
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Password"
+            formControlName="password"
+          />
+          <label for="password">Password</label>
+        </div>
       </div>
 
       <div class="form-check text-start my-3">

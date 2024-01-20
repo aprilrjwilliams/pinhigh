@@ -1,3 +1,7 @@
 node_modules
 package-lock.json
 .angular/cache
+3rdpartylicenses.txt
+main-*
+polyfills-*
+styles-*

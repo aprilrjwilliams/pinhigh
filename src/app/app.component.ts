@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,9 @@ import { HttpClient, provideHttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     RouterOutlet,
-    RouterModule
+    RouterModule,
+    HeaderComponent,
+    FooterComponent
   ],
   // providers: [provideHttpClient()],
   templateUrl: './app.component.html',

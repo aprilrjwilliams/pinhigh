@@ -1,0 +1,56 @@
+.container{
+    background-color: white;
+}
+
+
+body{
+    margin-top:20px;
+    background-color: #f2f3f8;
+}
+
+h1 {
+    font-family: "Nunito Sans", sans-serif;
+}
+
+.card {
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #c9b58c;
+    background-clip: border-box;
+    border: 1px solid #c9b58c;
+    border-radius: .2rem;
+}
+
+.form-group{
+    padding-bottom: 10px;
+}
+
+.form-control{
+    background-color: white;
+    color: black;
+}
+
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: black;
+    opacity: 1; /* Firefox */
+}
+
+label{
+    color: black;
+}
+
+.btn{
+    background-color: black;
+    border-color: black;
+    color: white;
+}

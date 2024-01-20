@@ -1,1 +1,82 @@
-<p>registration works!</p>
+
+<div class="container h-100">
+    <div class="row h-100">
+        <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100 my-5">
+            <div class="d-table-cell align-middle">
+
+                <div class="text-center mt-4">
+                    <h1 class="h2 mb-3">REGISTRATION</h1>
+                    <p class="mb-4">
+                        Get started by filling on the registration form.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="m-sm-4">
+                            <form (ngSubmit)="onSubmit()" [formGroup]='signupForm'>
+                                <div class="form-group">
+                                    <label>First Name</label>
+                                    <input class="form-control form-control-lg" type="text" name="firstname" placeholder="Enter your first name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Last Name</label>
+                                    <input class="form-control form-control-lg" type="text" name="lastname" placeholder="Enter your last name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input class="form-control form-control-lg" type="text" name="phone" placeholder="123-456-7890">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email</label>
+                                    <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password">
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button [disabled]="!signupForm.valid" type="submit" class="btn btn-success">Sign Up</button>
+                                    <!-- <a class="btn btn-lg btn-primary">Sign up</a> -->
+                                    <!-- <button type="submit" class="btn btn-lg btn-primary">Sign up</button> -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="row">
+    <div class="col">
+        <form (ngSubmit)="onSubmit()" [formGroup]='signupForm'>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input class="form-control" formControlName="email" type="email">
+                <label for="password">Password</label>
+                <input class="form-control" formControlName="password" type="password">
+                <label for="firstname">First Name</label>
+                <input class="form-control" formControlName="firstname" type="text">
+                <label for="lastname">Last Name</label>
+                <input class="form-control" formControlName="lastname" type="text">
+                <label for="phone">Phone</label>
+                <input class="form-control" formControlName="phone" type="text">
+            </div>
+            <button [disabled]="!signupForm.valid" type="submit" class="btn btn-success">Sign Up</button>
+        </form>
+    </div>
+</div> -->

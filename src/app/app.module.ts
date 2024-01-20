@@ -11,20 +11,27 @@ import { LoginComponent } from './pages/login/login.component';
 import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { FaqComponent } from './pages/faq/faq.component';
+import { HeaderComponent } from './pages/header/header.component';
+import { FooterComponent } from './pages/footer/footer.component';
 
-import { HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './shared/auth-interceptor';
 
 
 @NgModule({
   providers: [
     provideHttpClient(
       withFetch(),
-    )
+    ),
+    {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   imports: [ 
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [  
   ],
