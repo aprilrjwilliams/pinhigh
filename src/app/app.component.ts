@@ -27,17 +27,4 @@ export class AppComponent {
   constructor(private http:HttpClient){
   }
 
-  bookings:any=[];
-
-  refreshBookings(){
-    this.http.get(this.APIUrl+'getBookings').subscribe(data=>{
-      this.bookings=data;
-    })
-  };
-
-  ngOnInit(){
-    console.log('here ');
-    console.log('bookings ', this.bookings);
-    // this.refreshBookings();
-  }
 }

@@ -1,1 +1,15 @@
 <p>bookings works!</p>
+
+<div
+  class="btn-group-vertical"
+  role="group"
+  aria-label="Basic example"
+>
+  <button
+    *ngFor="let timeslot of timeslots"
+    type="button"
+    class="btn btn-secondary time-btn"
+  >
+    {{ timeslot.startTime }}
+  </button>
+</div>

@@ -14,7 +14,7 @@
         Before anyone can play at our club, you must have a waiver filled out.
       </p>
       <p><a class="abut" href="#">Waiver</a></p>
-      <ul>
+      <ul *ngIf="!userAuthenticated">
         <li>
           *Not a member? Please
           <a routerLink="/registration">click here</a>
@@ -25,6 +25,7 @@
           to book a simulator bay!
         </li>
       </ul>
+      <app-bookings *ngIf="userAuthenticated"></app-bookings>
     </div>
   </div>
 </div>

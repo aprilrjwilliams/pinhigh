@@ -1,13 +1,36 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 import { RouterOutlet, RouterModule } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../shared/auth-service';
+import { BookingsComponent } from '../bookings/bookings.component';
 
 @Component({
   selector: 'app-book',
   standalone: true,
-  imports: [RouterModule],
+  imports: [RouterModule, CommonModule, BookingsComponent],
   templateUrl: './book.component.html',
   styleUrl: './book.component.css'
 })
-export class BookComponent {
+export class BookComponent implements OnInit, OnDestroy {
+
+  private authenticationSub: Subscription | undefined;
+  userAuthenticated = true;
+
+  constructor(private authService: AuthService){}
+
+  ngOnDestroy(): void {
+    this.authenticationSub?.unsubscribe();
+  }
+
+  ngOnInit(): void {
+    // this.userAuthenticated = this.authService.getIsAuthenticated();
+    // this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
+    //   this.userAuthenticated = status;
+    // })
+
+    this.userAuthenticated = true;
+    console.log('this.userAuthenticated ', this.userAuthenticated)
+  }
 
 }

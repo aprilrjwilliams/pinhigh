@@ -30,11 +30,11 @@
             <a class="nav-link" routerLink="/book">Book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/login">Member Login</a>
+            <a *ngIf="!userAuthenticated" class="nav-link" routerLink="/login">Member Login</a>
           </li>
-          <!-- <li class="nav-item">
-            <a class="nav-link" routerLink="/" (click)="logout()>Logout</a>
-          </li> -->
+          <li class="nav-item">
+            <a *ngIf="userAuthenticated" class="nav-link" routerLink="/" (click)="logout()">Logout</a>
+          </li>
         </ul>
       </div>
     </div>
