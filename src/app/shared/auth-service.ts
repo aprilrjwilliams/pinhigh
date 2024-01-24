@@ -9,6 +9,7 @@ import { AuthModel } from "./auth-model";
 export class AuthService{
 
     private token: string = '';
+    private user_id: string = '';
     private authenticatedSub = new Subject<boolean>();
     private isAuthenticated = false;
     private logoutTimer: any;
@@ -21,6 +22,9 @@ export class AuthService{
     }
     getToken(){
         return this.token;
+    }
+    getUserId(){
+        return this.user_id;
     }
     
     constructor(private http: HttpClient, private router: Router){}
@@ -41,10 +45,12 @@ export class AuthService{
 
         console.log('authData in login ', authData)
 
-        this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/login/', authData)
+        this.http.post<{token: string, expiresIn: number, user_id: string}>('http://localhost:3000/login/', authData)
             .subscribe(res => {
                 this.token = res.token;
+                this.user_id = res.user_id;
                 console.log('token ', this.token)
+                console.log('user_id ', res.user_id)
                 if(this.token){
                     this.authenticatedSub.next(true);
                     this.isAuthenticated = true;

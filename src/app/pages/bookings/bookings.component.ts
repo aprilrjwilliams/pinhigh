@@ -8,6 +8,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormField } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { AuthService } from "../../shared/auth-service";
+
 
 @Component({
   selector: 'app-bookings',
@@ -22,23 +24,27 @@ import { MatInputModule } from '@angular/material/input';
 export class BookingsComponent implements OnInit, OnDestroy{
 
 
-  constructor(private timeslotDataService: TimeslotDataService){}
+  constructor(private timeslotDataService: TimeslotDataService, private authService: AuthService){}
 
   public pickedDate: any = null;
+  public user_id = '';
 
   public mock_ts: Timeslot[] = [
     {
       id: '1',
+      user_id: '',
       date: '1/1/2024',
       startTime: '9:00 AM'
     },
     {
       id: '2',
+      user_id: '',
       date: '1/1/2024',
       startTime: '12:00 PM'
     },
     {
       id: '3',
+      user_id: '',
       date: '1/1/2024',
       startTime: '4:00 PM'
     }
@@ -58,9 +64,9 @@ export class BookingsComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
-    
-
-    
+    // TODO HERE - attach user_id to timeslot!
+    this.user_id = this.authService.getUserId();
+    console.log('user_id - ', this.user_id);
   }
 
   OnDateChange(date: any){
@@ -119,6 +125,7 @@ export class BookingsComponent implements OnInit, OnDestroy{
 
       timeslots.push ({
         id: '',
+        user_id: '',
         date: selectedDate,
         startTime: startTime
       })

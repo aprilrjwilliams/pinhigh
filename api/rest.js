@@ -39,7 +39,8 @@ app.delete('/remove-timeslot/:id', (req, res) => {
 })
 
 app.put('/update-timeslot/:id', (req, res) => {
-    const updatedTimeslot = new TimeslotModel({_id: req.body.id, date: req.body.date, startTime: req.body.startTime})
+    const updatedTimeslot = new TimeslotModel({_id: req.body.id, date: req.body.date, startTime: req.body.startTime, 
+       user_id: req.body.user_id})
     TimeslotModel.updateOne({_id: req.body.id}, updatedTimeslot)
         .then(() => {
             res.status(200).json({
@@ -49,7 +50,7 @@ app.put('/update-timeslot/:id', (req, res) => {
 })
 
 app.post('/add-timeslot', (req,res) => {
-    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime});
+    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime, user_id: req.body.user_id});
     console.log('in post ', timeslot)
     timeslot.save()
         .then(() => {
@@ -133,6 +134,7 @@ app.post('/login', (req,res) => {
                 })
             }
             userFound = user
+            console.log('userFound ', userFound)
             return bcrypt.compare(req.body.password, user.password)
         })
     .then(result => {
@@ -145,7 +147,9 @@ app.post('/login', (req,res) => {
         const token = jwt.sign({email: userFound.email, userId: userFound._id}, "secret_string", {expiresIn:"1h"})
         return res.status(200).json({
             token: token,
-            expiresIn: 3600
+            expiresIn: 3600,
+            user_id: userFound._id
+
         })
     })
     .catch(err => {

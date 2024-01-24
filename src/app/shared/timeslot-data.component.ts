@@ -32,11 +32,12 @@ export class TimeslotDataService{
         this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {date: date}})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
-            return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string}) => {
+            return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string}) => {
                 return {
                     date: timeslot.date,
                     startTime: timeslot.startTime,
-                    id: timeslot._id
+                    id: timeslot._id,
+                    user_id: timeslot.user_id
                 }
             })
         }))
