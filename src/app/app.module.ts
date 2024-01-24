@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 import { AppRoutingModule } from './app.routes';
 import { AppComponent }  from './app.component';
@@ -31,7 +32,8 @@ import { AuthInterceptor } from './shared/auth-interceptor';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDatepickerModule
   ],
   declarations: [  
   ],

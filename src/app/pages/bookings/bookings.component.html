@@ -1,15 +1,35 @@
-<p>bookings works!</p>
-
-<div
-  class="btn-group-vertical"
-  role="group"
-  aria-label="Basic example"
->
-  <button
-    *ngFor="let timeslot of timeslots"
-    type="button"
-    class="btn btn-secondary time-btn"
-  >
-    {{ timeslot.startTime }}
-  </button>
+<div class="container">
+    <div class="row">
+        <div class="col p-0">
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Choose a date</mat-label>
+                <input
+                  (dateInput)="OnDateChange($event.value)"
+                  matInput
+                  [matDatepicker]="picker1"
+                />
+                <mat-datepicker-toggle matSuffix [for]="picker1"> </mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div
+                *ngIf="!isLoading"
+                class="btn-group-vertical"
+                role="group"
+                aria-label="Basic example"
+            >
+                <button
+                *ngFor="let timeslot of availableTimeslots"
+                type="button"
+                class="btn btn-secondary time-btn"
+                (click)="onSubmit(timeslot)"
+                >
+                {{ timeslot.startTime }}
+                </button>
+            </div>
+        </div>
+    </div>
 </div>

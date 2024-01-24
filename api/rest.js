@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const DiaryEntryModel = require('./entry-schema');
+const TimeslotModel = require('./timeslot-schema');
 const mongoose = require('mongoose');
 const UserModel = require('./user-model');
 const bcrypt = require('bcrypt');
@@ -26,6 +26,70 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
     next();
+})
+
+
+app.delete('/remove-timeslot/:id', (req, res) => {
+    TimeslotModel.deleteOne({_id: req.params.id})
+    .then(() => {
+        res.status(200).json({
+            message: 'Timeslot Deleted'
+        })
+    })
+})
+
+app.put('/update-timeslot/:id', (req, res) => {
+    const updatedTimeslot = new TimeslotModel({_id: req.body.id, date: req.body.date, startTime: req.body.startTime})
+    TimeslotModel.updateOne({_id: req.body.id}, updatedTimeslot)
+        .then(() => {
+            res.status(200).json({
+                message: 'Update completed'
+            })    
+        })
+})
+
+app.post('/add-timeslot', (req,res) => {
+    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime});
+    console.log('in post ', timeslot)
+    timeslot.save()
+        .then(() => {
+            res.status(200).json({
+                message: 'Post submitted'
+            })
+        })
+})
+
+// app.post('/add-timeslot', (req, res, next) => {
+   
+//     try{
+//         const token = req.headers.authorization;
+//         jwt.verify(token, "secret_string")
+//         next();
+//     }
+//     catch(err){
+//         res.status(401).json({
+//             message:"Error with Authentication token"
+//         })
+//     }
+    
+// }, (req,res) => {
+//     const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime});
+//     timeslot.save()
+//         .then(() => {
+//             res.status(200).json({
+//                 message: 'Post submitted'
+//             })
+//         })
+// })
+
+app.get('/timeslots',(req, res, next) => {
+    TimeslotModel.find({date: req.query.date})
+    .then((data) => {
+        res.json({'timeslots': data});
+    })
+    .catch(() => {
+        console.log('Error fetching timeslots')
+    })
 })
 
 

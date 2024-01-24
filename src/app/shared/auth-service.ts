@@ -44,6 +44,7 @@ export class AuthService{
         this.http.post<{token: string, expiresIn: number}>('http://localhost:3000/login/', authData)
             .subscribe(res => {
                 this.token = res.token;
+                console.log('token ', this.token)
                 if(this.token){
                     this.authenticatedSub.next(true);
                     this.isAuthenticated = true;

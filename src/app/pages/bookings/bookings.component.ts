@@ -1,53 +1,104 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common'; 
-import { Timeslot } from './bookings.model'
+// import { Timeslot } from './bookings.model'
+import { Timeslot } from '../../shared/timeslot.model';
+import { TimeslotDataService } from '../../shared/timeslot-data.component';
+import { Subscription } from 'rxjs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormField } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-bookings',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatDatepickerModule, MatNativeDateModule, MatFormField, MatInputModule],
+  providers: [  
+    MatDatepickerModule,  
+  ],
   templateUrl: './bookings.component.html',
   styleUrl: './bookings.component.css'
 })
-export class BookingsComponent implements OnInit{
+export class BookingsComponent implements OnInit, OnDestroy{
 
 
-  public timeslots: Timeslot[] = [];
+  constructor(private timeslotDataService: TimeslotDataService){}
+
+  public pickedDate: any = null;
+
+  public mock_ts: Timeslot[] = [
+    {
+      id: '1',
+      date: '1/1/2024',
+      startTime: '9:00 AM'
+    },
+    {
+      id: '2',
+      date: '1/1/2024',
+      startTime: '12:00 PM'
+    },
+    {
+      id: '3',
+      date: '1/1/2024',
+      startTime: '4:00 PM'
+    }
+  ]
 
 
-  constructor(){}
+  public selectedDateTimeslots: Timeslot[] = [];
+  public bookedTimeslots: Timeslot[] = [];
+  public availableTimeslots: Timeslot[] = [];
+  public selectedDate: string = '';
+  public isLoading = true;
+
+  timeslotsSub = new Subscription();
+
+  ngOnDestroy(): void {
+    this.timeslotsSub.unsubscribe();
+  }
 
   ngOnInit(): void {
-    this.timeslots = this.generateTimeslots('1/1/2024');
-    console.log('timeslots ', this.timeslots);
+    
+
+    
   }
 
-  getUniqueId(): string {
-    const dateString = Date.now().toString(36);
-    const randomness = Math.random().toString(36).substr(2);
-    return dateString + randomness;
+  OnDateChange(date: any){
+    this.isLoading = true;
+    console.log('date change ', date);
+
+    this.selectedDate = this.getDateString(date)
+    console.log('selectedDate ', this.selectedDate)
+
+    this.selectedDateTimeslots = this.generateTimeslots(this.selectedDate);
+    console.log('selectedDateTimeslots ', this.selectedDateTimeslots);
+
+    this.timeslotDataService.getTimeslots(this.selectedDate);
+    this.timeslotsSub = this.timeslotDataService.timeslotSubject.subscribe(timeslots => {
+      this.bookedTimeslots = timeslots;
+      console.log('bookedTimeslots ', this.bookedTimeslots);
+      this.getAvailableTimeslots();
+      console.log('availableTimeslots ', this.availableTimeslots)
+      this.isLoading = false;
+    })
+
   }
 
-  // addMinutes(time: string, minutes: any) {
-  //   var date = new Date(new Date('01/01/2015 ' + time).getTime() + minutes * 60000);
-  //   var tempTime = ((date.getHours().toString().length == 1) ? '0' + date.getHours() : date.getHours()) + ':' +
-  //     ((date.getMinutes().toString().length == 1) ? '0' + date.getMinutes() : date.getMinutes()) + ':' +
-  //     ((date.getSeconds().toString().length == 1) ? '0' + date.getSeconds() : date.getSeconds());
-  //   return tempTime;
-  // }
+  getDateString(date: Date): string{
+    let dateString = '';
+    if(date){
+      // dateString = ((date.getMonth() > 8) ? (date.getMonth() + 1) : ('0' + (date.getMonth() + 1))) + '/' + ((date.getDate() > 9) ? date.getDate() : ('0' + date.getDate())) + '/' + date.getFullYear();
+      dateString = (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear();
 
-  // formatTime(time: any): string{
-  //   // Check correct time format and split into components
-  //   time = time.toString().match (/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time];
+    }
 
-  //   if (time.length > 1) { // If time format correct
-  //     time = time.slice (1);  // Remove full string match value
-  //     time[5] = +time[0] < 12 ? 'AM' : 'PM'; // Set AM/PM
-  //     time[0] = +time[0] % 12 || 12; // Adjust hours
-  //   }
-  //   let newTime = time.join (''); // return adjusted time or original string
-  //   console.log('newTime ', newTime)
-  //   return newTime
+    return dateString
+  }
+
+  // getUniqueId(): string {
+  //   const dateString = Date.now().toString(36);
+  //   const randomness = Math.random().toString(36).substr(2);
+  //   return dateString + randomness;
   // }
 
   generateTimeslots(selectedDate: string): Timeslot[]{
@@ -55,7 +106,6 @@ export class BookingsComponent implements OnInit{
     let timeslots: Timeslot[] = []
 
     for (let i = 8; i <= 17; i++) {
-
       let startTime = ''; //format: HH:MM AM/PM
 
       if (i < 12){
@@ -67,16 +117,31 @@ export class BookingsComponent implements OnInit{
         startTime = hour + ':00 PM';
       }
 
-
       timeslots.push ({
+        id: '',
         date: selectedDate,
         startTime: startTime
       })
     }
-    
-
 
     return timeslots;
+  }
+
+
+  getAvailableTimeslots(): void{
+    this.availableTimeslots = this.selectedDateTimeslots.filter(val => {
+      return !this.bookedTimeslots.find((val2)=>{
+         return val.startTime===val2.startTime
+      }) 
+     });
+  }
+
+  addTimeslot(timeslot: Timeslot): void {
+    this.timeslotDataService.onAddTimeslot(timeslot);
+  }
+
+  onSubmit(timeslot: Timeslot):void {
+    this.addTimeslot(timeslot)
   }
 
 

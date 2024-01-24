@@ -918,3 +918,8 @@ footer.opt3 {
           margin: 0 10px;
           color: #c9b58c; }
 
+
+/* html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; } */
+
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
