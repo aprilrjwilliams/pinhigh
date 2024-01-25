@@ -13,6 +13,16 @@
               </mat-form-field>
         </div>
     </div>
+    <div *ngIf="showBaySelect" class="row">
+        <div class="col p-0">
+            <p>Please select a bay to see available time slots:</p>
+            <select #bays class="form-select" (change)="onBayChange(bays.value)" aria-label="Bay selection">
+                <option default value="">Pick a bay</option>
+                <option value="1">Bay 1</option>
+                <option value="2">Bay 2</option>
+              </select>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <div

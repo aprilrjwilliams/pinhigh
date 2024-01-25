@@ -24,13 +24,11 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // this.userAuthenticated = this.authService.getIsAuthenticated();
-    // this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
-    //   this.userAuthenticated = status;
-    // })
-
-    this.userAuthenticated = true;
-    console.log('this.userAuthenticated ', this.userAuthenticated)
+    this.userAuthenticated = this.authService.getIsAuthenticated();
+    this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
+      this.userAuthenticated = status;
+      console.log('this.userAuthenticated ', this.userAuthenticated)
+    })
   }
 
 }

@@ -58,13 +58,14 @@ export class AuthService{
                     this.logoutTimer = setTimeout(() => {this.logout()}, res.expiresIn * 1000);
                     const now = new Date();
                     const expiresDate = new Date(now.getTime() + (res.expiresIn * 1000));
-                    this.storeLoginDetails(this.token, expiresDate);
+                    this.storeLoginDetails(this.token, expiresDate, this.user_id);
                 }
             })
     }
 
     logout(){
         this.token = '';
+        this.user_id = '';
         this.isAuthenticated = false;
         this.authenticatedSub.next(false);
         this.router.navigate(['/']);
@@ -72,25 +73,29 @@ export class AuthService{
         this.clearLoginDetails();
     }
 
-    storeLoginDetails(token: string, expirationDate: Date){
+    storeLoginDetails(token: string, expirationDate: Date, user_id: string){
         localStorage.setItem('token', token);
+        localStorage.setItem('user_id', user_id);
         localStorage.setItem('expiresIn', expirationDate.toISOString());
     }
 
     clearLoginDetails(){
         localStorage.removeItem('token');
+        localStorage.removeItem('user_id');
         localStorage.removeItem('expiresIn');
     }
 
     getLocalStorageData(){
         const token = localStorage.getItem('token');
+        const user_id = localStorage.getItem('user_id');
         const expiresIn = localStorage.getItem('expiresIn');
 
-        if(!token || !expiresIn){
+        if(!token || !user_id || !expiresIn){
             return;
         }
         return {
             'token': token,
+            'user_id': user_id,
             'expiresIn': new Date(expiresIn)
         }
     }
@@ -101,11 +106,14 @@ export class AuthService{
             const now = new Date();
             const expiresIn = localStorageData.expiresIn.getTime() - now.getTime();
 
+            console.log('logoutTimer ', this.logoutTimer)
+
             if(expiresIn > 0){
                 this.token = localStorageData.token;
+                this.user_id = localStorageData.user_id;
                 this.isAuthenticated = true;
                 this.authenticatedSub.next(true);
-                this.logoutTimer.setTimeout(expiresIn / 1000);
+                this.logoutTimer = setTimeout(() => {(expiresIn / 1000)});
             }
         }
     }

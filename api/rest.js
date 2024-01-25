@@ -40,7 +40,7 @@ app.delete('/remove-timeslot/:id', (req, res) => {
 
 app.put('/update-timeslot/:id', (req, res) => {
     const updatedTimeslot = new TimeslotModel({_id: req.body.id, date: req.body.date, startTime: req.body.startTime, 
-       user_id: req.body.user_id})
+       user_id: req.body.user_id, bay: req.body.bay})
     TimeslotModel.updateOne({_id: req.body.id}, updatedTimeslot)
         .then(() => {
             res.status(200).json({
@@ -50,7 +50,7 @@ app.put('/update-timeslot/:id', (req, res) => {
 })
 
 app.post('/add-timeslot', (req,res) => {
-    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime, user_id: req.body.user_id});
+    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime, user_id: req.body.user_id, bay: req.body.bay});
     console.log('in post ', timeslot)
     timeslot.save()
         .then(() => {

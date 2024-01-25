@@ -34,19 +34,22 @@ export class BookingsComponent implements OnInit, OnDestroy{
       id: '1',
       user_id: '',
       date: '1/1/2024',
-      startTime: '9:00 AM'
+      startTime: '9:00 AM',
+      bay: ''
     },
     {
       id: '2',
       user_id: '',
       date: '1/1/2024',
-      startTime: '12:00 PM'
+      startTime: '12:00 PM',
+      bay: ''
     },
     {
       id: '3',
       user_id: '',
       date: '1/1/2024',
-      startTime: '4:00 PM'
+      startTime: '4:00 PM',
+      bay: ''
     }
   ]
 
@@ -56,6 +59,8 @@ export class BookingsComponent implements OnInit, OnDestroy{
   public availableTimeslots: Timeslot[] = [];
   public selectedDate: string = '';
   public isLoading = true;
+  public showBaySelect = false;
+  public selectedBay = '';
 
   timeslotsSub = new Subscription();
 
@@ -76,18 +81,28 @@ export class BookingsComponent implements OnInit, OnDestroy{
     this.selectedDate = this.getDateString(date)
     console.log('selectedDate ', this.selectedDate)
 
-    this.selectedDateTimeslots = this.generateTimeslots(this.selectedDate);
-    console.log('selectedDateTimeslots ', this.selectedDateTimeslots);
+    this.showBaySelect = true;
 
-    this.timeslotDataService.getTimeslots(this.selectedDate);
-    this.timeslotsSub = this.timeslotDataService.timeslotSubject.subscribe(timeslots => {
-      this.bookedTimeslots = timeslots;
-      console.log('bookedTimeslots ', this.bookedTimeslots);
-      this.getAvailableTimeslots();
-      console.log('availableTimeslots ', this.availableTimeslots)
-      this.isLoading = false;
-    })
+  }
 
+  onBayChange(bay: string):void {
+    console.log('onBayChange ', bay)
+
+    if(bay != '') {
+      this.selectedBay = bay;
+
+      this.selectedDateTimeslots = this.generateTimeslots(this.selectedDate);
+      console.log('selectedDateTimeslots ', this.selectedDateTimeslots);
+
+      this.timeslotDataService.getTimeslots(this.selectedDate);
+      this.timeslotsSub = this.timeslotDataService.timeslotSubject.subscribe(timeslots => {
+        this.bookedTimeslots = timeslots;
+        console.log('bookedTimeslots ', this.bookedTimeslots);
+        this.getAvailableTimeslots();
+        console.log('availableTimeslots ', this.availableTimeslots)
+        this.isLoading = false;
+      })
+    }
   }
 
   getDateString(date: Date): string{
@@ -127,7 +142,8 @@ export class BookingsComponent implements OnInit, OnDestroy{
         id: '',
         user_id: '',
         date: selectedDate,
-        startTime: startTime
+        startTime: startTime,
+        bay: ''
       })
     }
 
@@ -148,6 +164,9 @@ export class BookingsComponent implements OnInit, OnDestroy{
   }
 
   onSubmit(timeslot: Timeslot):void {
+    timeslot.user_id = this.user_id;
+    timeslot.bay = this.selectedBay;
+    console.log('adding timeslot ', timeslot)
     this.addTimeslot(timeslot)
   }
 

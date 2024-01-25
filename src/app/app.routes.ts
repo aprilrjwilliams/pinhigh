@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './pages/home/home.component';
@@ -10,6 +10,7 @@ import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
+import { AuthGuard } from './shared/route-guard';
 
 export const routes: Routes = [
     {
@@ -46,7 +47,8 @@ export const routes: Routes = [
     },
     {
       path: 'bookings',
-      component: BookingsComponent
+      component: BookingsComponent,
+      canActivate: [AuthGuard],
     },
     { path: '**', redirectTo: '' }
 ];
@@ -54,6 +56,6 @@ export const routes: Routes = [
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule { }
