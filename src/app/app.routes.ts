@@ -10,6 +10,7 @@ import { MembershipComponent } from './pages/membership/membership.component';
 import { RegistrationComponent } from './pages/registration/registration.component';
 import { FaqComponent } from './pages/faq/faq.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
+import { ReservationComponent } from './pages/reservation/reservation.component'
 import { AuthGuard } from './shared/route-guard';
 
 export const routes: Routes = [
@@ -48,6 +49,11 @@ export const routes: Routes = [
     {
       path: 'bookings',
       component: BookingsComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'reservation',
+      component: ReservationComponent,
       canActivate: [AuthGuard],
     },
     { path: '**', redirectTo: '' }

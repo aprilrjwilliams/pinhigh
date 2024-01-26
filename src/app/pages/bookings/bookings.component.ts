@@ -164,7 +164,7 @@ export class BookingsComponent implements OnInit, OnDestroy {
 
       hour++;
     }
-    console.log('timesDDL ', timesDDL)
+
     return timesDDL;
   }
 
@@ -220,11 +220,13 @@ export class BookingsComponent implements OnInit, OnDestroy {
     console.log(' openConfirmationDialog ', message)
     this.confirmationDialogService.confirm('Confirm Booking', message)
     .then((confirmed) => {
-      timeslot.user_id = this.user_id;
-      timeslot.bay = this.selectedBay;
-      this.removeTimeSlotFromList(timeslot.startTime);
-      console.log("adding timeslot ", timeslot);
-      this.addTimeslot(timeslot);
+      if(confirmed){  
+        timeslot.user_id = this.user_id;
+        timeslot.bay = this.selectedBay;
+        this.removeTimeSlotFromList(timeslot.startTime);
+        console.log("adding timeslot ", timeslot);
+        this.addTimeslot(timeslot);
+      }
     })
     .catch(() => console.log('User cancelled'));
   }

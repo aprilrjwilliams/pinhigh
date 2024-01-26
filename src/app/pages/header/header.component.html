@@ -26,8 +26,17 @@
           <li class="nav-item">
             <a class="nav-link" routerLink="/membership">Membership</a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a class="nav-link" routerLink="/book">Book</a>
+          </li> -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Book
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" routerLink="/book">Book</a></li>
+              <li><a class="dropdown-item" routerLink="/reservation">My Reservations</a></li>
+            </ul>
           </li>
           <li class="nav-item">
             <a *ngIf="!userAuthenticated" class="nav-link" routerLink="/login">Member Login</a>
