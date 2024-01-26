@@ -50,7 +50,7 @@ app.put('/update-timeslot/:id', (req, res) => {
 })
 
 app.post('/add-timeslot', (req,res) => {
-    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime, user_id: req.body.user_id, bay: req.body.bay});
+    const timeslot = new TimeslotModel({date: req.body.date, startTime: req.body.startTime, bay: req.body.bay, user_id: req.body.user_id});
     console.log('in post ', timeslot)
     timeslot.save()
         .then(() => {
@@ -84,7 +84,7 @@ app.post('/add-timeslot', (req,res) => {
 // })
 
 app.get('/timeslots',(req, res, next) => {
-    TimeslotModel.find({date: req.query.date})
+    TimeslotModel.find({date: req.query.date, bay: req.query.bay})
     .then((data) => {
         res.json({'timeslots': data});
     })

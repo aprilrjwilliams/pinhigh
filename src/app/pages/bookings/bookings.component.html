@@ -23,22 +23,32 @@
               </select>
         </div>
     </div>
-    <div class="row">
+    <div class="row mt-5">
         <div class="col">
             <div
                 *ngIf="!isLoading"
-                class="btn-group-vertical"
+                class="row"
                 role="group"
                 aria-label="Basic example"
+                
             >
-                <button
+                <!-- <button
                 *ngFor="let timeslot of availableTimeslots"
                 type="button"
                 class="btn btn-secondary time-btn"
                 (click)="onSubmit(timeslot)"
                 >
                 {{ timeslot.startTime }}
-                </button>
+                </button> -->
+                <div class="col-2" *ngFor="let timeslot of availableTimeslots">
+                    <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="openConfirmationDialog(timeslot)"
+                    >
+                    {{ timeslot.startTime }}
+                    </button>
+                </div>
             </div>
         </div>
     </div>

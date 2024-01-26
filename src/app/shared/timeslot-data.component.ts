@@ -28,8 +28,8 @@ export class TimeslotDataService{
         })
     }
 
-    getTimeslots(date: string){
-        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {date: date}})
+    getTimeslots(date: string, bay: string){
+        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {date: date, bay: bay}})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
             return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string, bay: string}) => {

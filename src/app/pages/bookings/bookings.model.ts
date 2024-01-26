@@ -3,4 +3,5 @@ export interface Timeslot {
     date: string;
     startTime: string;
     bay: string;
+    user_id: string
 }
