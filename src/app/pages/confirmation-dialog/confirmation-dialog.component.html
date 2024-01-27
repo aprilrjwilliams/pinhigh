@@ -8,10 +8,10 @@
   {{ message }}
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-danger" (click)="decline()">
+  <button type="button" class="btn" [ngClass]="{'btn-danger': type === 'Confirm', 'btn-secondary' : type === 'Delete'}" (click)="decline()">
     {{ btnCancelText }}
   </button>
-  <button type="button" class="btn btn-success" (click)="accept()">
+  <button type="button" class="btn" [ngClass]="{'btn-success': type === 'Confirm', 'btn-danger' : type === 'Delete'}" (click)="accept()">
     {{ btnOkText }}
   </button>
 </div>

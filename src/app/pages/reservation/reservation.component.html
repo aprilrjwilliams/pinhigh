@@ -24,7 +24,7 @@
                 <th scope="row">{{t.date}}</th>
                 <td>{{t.startTime}}</td>
                 <td>{{t.bay}}</td>
-                <td><button type="button" class="btn btn-danger">Cancel</button></td>
+                <td><button type="button" class="btn btn-danger" (click)="openDeleteConfirmationDialog(t)">Cancel</button></td>
               </tr>
             </tbody>
           </table>

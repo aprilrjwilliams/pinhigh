@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
   selector: 'app-reservation',
   standalone: true,
   imports: [CommonModule],
+  providers: [ConfirmationDialogService],
   templateUrl: './reservation.component.html',
   styleUrl: './reservation.component.css'
 })
@@ -17,7 +18,8 @@ export class ReservationComponent implements OnInit, OnDestroy {
 
   constructor(
     private timeslotDataService: TimeslotDataService,
-    private authService: AuthService
+    private authService: AuthService,
+    private confirmationDialogService: ConfirmationDialogService
   ) {}
 
   timeslotsSub = new Subscription();
@@ -50,9 +52,22 @@ export class ReservationComponent implements OnInit, OnDestroy {
     this.timeslots.sort((a,b)=> (new Date(a.date + ' ' + a.startTime).getTime()) - (new Date(b.date + ' ' + b.startTime).getTime()))
   }
 
-  //TODO
-  //delete reservations
+  deleteTimeslot(timeslot: Timeslot): void {
+    if(timeslot.id){
+      this.timeslotDataService.onDeleteTimeslot(timeslot.id);
+    }
+  }
 
-
-
+  public openDeleteConfirmationDialog(timeslot: Timeslot) {
+    const message = timeslot.date + ' at ' + timeslot.startTime + ' on bay ' + timeslot.bay;
+    console.log(' openConfirmationDialog ', message)
+    this.confirmationDialogService.delete('Delete Booking', message)
+    .then((confirmed) => {
+      if(confirmed){  
+        this.deleteTimeslot(timeslot);
+        this.getUserTimeslots();
+      }
+    })
+    .catch(() => console.log('User cancelled'));
+  }
 }

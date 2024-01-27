@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
@@ -5,7 +6,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-confirmation-dialog',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './confirmation-dialog.component.html',
   styleUrl: './confirmation-dialog.component.css'
 })
@@ -15,6 +16,7 @@ export class ConfirmationDialogComponent implements OnInit{
   @Input() message: string = '';
   @Input() btnOkText: string = 'Confirm';
   @Input() btnCancelText: string = '';
+  @Input() type: string = 'Confirm' //Confirm, Delete
 
   constructor(private activeModal: NgbActiveModal) { }
 
