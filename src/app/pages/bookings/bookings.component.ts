@@ -74,7 +74,6 @@ export class BookingsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // TODO HERE - attach user_id to timeslot!
     this.user_id = this.authService.getUserId();
     console.log("user_id - ", this.user_id);
   }

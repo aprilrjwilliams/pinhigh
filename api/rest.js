@@ -84,8 +84,17 @@ app.post('/add-timeslot', (req,res) => {
 // })
 
 app.get('/timeslots',(req, res, next) => {
-    TimeslotModel.find({date: req.query.date, bay: req.query.bay})
+    let timeslot = {};
+    if(req.query.user_id){
+        timeslot = {user_id: req.query.user_id}
+        console.log('new timeslot ', timeslot)
+    } else {
+        timeslot = {date: req.query.date, bay: req.query.bay}
+        console.log('new timeslot ', timeslot)
+    }
+    TimeslotModel.find(timeslot)
     .then((data) => {
+        console.log('data ', data)
         res.json({'timeslots': data});
     })
     .catch(() => {

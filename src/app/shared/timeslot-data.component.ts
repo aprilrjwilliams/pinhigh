@@ -19,6 +19,7 @@ export class TimeslotDataService{
     
     public timeslotSubject = new Subject<Timeslot[]>();
     private timeslots: Timeslot[] = [];
+    private userTimeslots: Timeslot[] = [];
 
     onDeleteTimeslot(id: string){
         
@@ -45,6 +46,26 @@ export class TimeslotDataService{
         .subscribe((updateResponse) => {
             this.timeslots = updateResponse;
             this.timeslotSubject.next(this.timeslots);
+        })
+    }
+
+    getTimeslotsbyUser(user_id: string){
+        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {user_id: user_id}})
+        .pipe(map((responseData) => {
+            console.log('responseData ', responseData)
+            return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string, bay: string}) => {
+                return {
+                    date: timeslot.date,
+                    startTime: timeslot.startTime,
+                    id: timeslot._id,
+                    user_id: timeslot.user_id,
+                    bay: timeslot.bay
+                }
+            })
+        }))
+        .subscribe((updateResponse) => {
+            this.userTimeslots = updateResponse;
+            this.timeslotSubject.next(this.userTimeslots);
         })
     }
 
