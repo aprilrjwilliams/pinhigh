@@ -17,23 +17,23 @@
                             <form (ngSubmit)="onSubmit()" [formGroup]='signupForm'>
                                 <div class="form-group">
                                     <label>First Name</label>
-                                    <input class="form-control form-control-lg" type="text" name="firstname" placeholder="Enter your first name">
+                                    <input class="form-control form-control-lg" type="text" formControlName="firstname" placeholder="Enter your first name">
                                 </div>
                                 <div class="form-group">
                                     <label>Last Name</label>
-                                    <input class="form-control form-control-lg" type="text" name="lastname" placeholder="Enter your last name">
+                                    <input class="form-control form-control-lg" type="text" formControlName="lastname" placeholder="Enter your last name">
                                 </div>
                                 <div class="form-group">
                                     <label>Phone</label>
-                                    <input class="form-control form-control-lg" type="text" name="phone" placeholder="123-456-7890">
+                                    <input class="form-control form-control-lg" type="text" formControlName="phone" placeholder="123-456-7890">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input class="form-control form-control-lg" type="email" name="email" placeholder="Enter your email">
+                                    <input class="form-control form-control-lg" type="email" formControlName="email" placeholder="Enter your email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="form-control form-control-lg" type="password" name="password" placeholder="Enter password">
+                                    <input class="form-control form-control-lg" type="password" formControlName="password" placeholder="Enter password">
                                 </div>
                                 <div class="text-center mt-3">
                                     <button [disabled]="!signupForm.valid" type="submit" class="btn btn-success">Sign Up</button>

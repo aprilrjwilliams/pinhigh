@@ -4,11 +4,14 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../shared/auth-service';
 import { BookingsComponent } from '../bookings/bookings.component';
+import { AuthInterceptor } from '../../shared/auth-interceptor';
+
 
 @Component({
   selector: 'app-book',
   standalone: true,
   imports: [RouterModule, CommonModule, BookingsComponent],
+  providers:[],
   templateUrl: './book.component.html',
   styleUrl: './book.component.css'
 })

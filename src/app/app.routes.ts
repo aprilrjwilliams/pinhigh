@@ -11,6 +11,8 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { FaqComponent } from './pages/faq/faq.component';
 import { BookingsComponent } from './pages/bookings/bookings.component';
 import { ReservationComponent } from './pages/reservation/reservation.component'
+import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
+import { SuccessPageComponent } from './pages/success-page/success-page.component';
 import { AuthGuard } from './shared/route-guard';
 
 export const routes: Routes = [
@@ -54,6 +56,16 @@ export const routes: Routes = [
     {
       path: 'reservation',
       component: ReservationComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'payment',
+      component: PaymentPageComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'success',
+      component: SuccessPageComponent,
       canActivate: [AuthGuard],
     },
     { path: '**', redirectTo: '' }

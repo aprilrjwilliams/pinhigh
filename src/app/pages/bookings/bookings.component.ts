@@ -19,7 +19,7 @@ import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-d
     MatDatepickerModule,
     MatNativeDateModule,
     MatFormField,
-    MatInputModule,
+    MatInputModule
   ],
   providers: [MatDatepickerModule, ConfirmationDialogService],
   templateUrl: "./bookings.component.html",

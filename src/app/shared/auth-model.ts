@@ -12,4 +12,5 @@ export interface AuthModel{
     firstname?: string;
     lastname?: string;
     phone?: string;
+    isAdmin?: string
 }

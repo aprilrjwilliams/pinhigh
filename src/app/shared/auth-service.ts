@@ -30,13 +30,18 @@ export class AuthService{
     constructor(private http: HttpClient, private router: Router){}
     
     signupUser(email: string, password: string, firstname: string, lastname: string, phone:string){
+        let isAdmin = 'false';
+        if(email=='testadmin@yahoo.com'){
+            isAdmin = 'true';
+        }
 
-        const authData: AuthModel = {email: email, password: password, firstname: firstname, lastname: lastname, phone: phone};
+        const authData: AuthModel = {email: email, password: password, firstname: firstname, lastname: lastname, phone: phone, isAdmin: isAdmin};
 
         console.log('authData ', authData)
         
         this.http.post('http://localhost:3000/sign-up/', authData).subscribe(res => {
             console.log(res);
+            return res;
         })
     }
 

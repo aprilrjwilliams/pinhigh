@@ -7,6 +7,8 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require("cors");
 
+const stripeController= require("./stripe.controller");
+
 const CONNECT_STRING = 'mongodb+srv://aprilrjwilliams:mongodb1234@cluster0.mbx9jrs.mongodb.net/pinhighdb?retryWrites=true&w=majority'
 
 const app = express();
@@ -114,6 +116,7 @@ app.post('/sign-up', (req,res) => {
                 firstname: req.body.firstname,
                 lastname: req.body.lastname,
                 phone: req.body.phone,
+                isAdmin: req.body.isAdmin
             })
 
             userModel.save()
@@ -167,6 +170,11 @@ app.post('/login', (req,res) => {
         })
     })
 })
+
+
+
+// app.post("/create-checkout-session", stripeController.createPaymentSession);
+
 
 module.exports = app;
 

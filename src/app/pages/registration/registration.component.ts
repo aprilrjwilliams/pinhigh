@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../shared/auth-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -12,7 +13,7 @@ import { AuthService } from '../../shared/auth-service';
 export class RegistrationComponent implements OnInit {
   signupForm: FormGroup = new FormGroup({});
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({
@@ -32,7 +33,12 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(){
     console.log('onSubmit ', this.signupForm.value)
-    this.authService.signupUser(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.firstname, this.signupForm.value.lastname, this.signupForm.value.phone);
+    let newUser: any = this.authService.signupUser(this.signupForm.value.email, this.signupForm.value.password, this.signupForm.value.firstname, this.signupForm.value.lastname, this.signupForm.value.phone);
+    console.log('newUser ', newUser)
+    //TODO: Fix this route when user created
+    if(newUser?.message == 'User created'){
+      this.router.navigate(['/']);
+    }
   }
 
 }

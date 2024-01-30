@@ -9,22 +9,6 @@ import {
 import { Observable } from "rxjs";
 import { AuthService } from "./auth-service";
 
-// @Injectable({
-//     providedIn: 'root'
-// })
-// class RouteGuard {
-
-//     constructor(private authService: AuthService, private router: Router){}
-
-//     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-//         const isAuthenticated = this.authService.getIsAuthenticated();
-//         if(!isAuthenticated){
-//             this.router.navigate(['/login']);
-//         }
-//         return isAuthenticated;
-//     }
-
-// }
 
 @Injectable({
   providedIn: "root",

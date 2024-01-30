@@ -12,7 +12,8 @@ const userSchema = mongoose.Schema({
         message: 'Invalid email address format',
       }
     },
-    password: {type: String, required: true}
+    password: {type: String, required: true},
+    isAdmin: {type: String}
 });
 
 userSchema.plugin(uniqueValidator);
