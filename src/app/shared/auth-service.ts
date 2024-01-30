@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 // import { expressionType } from "@angular/compiler/src/output/output_ast";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
-import { Subject } from "rxjs";
+import { Observable, Subject } from "rxjs";
 import { AuthModel } from "./auth-model";
 
 @Injectable({providedIn:"root"})
@@ -13,6 +13,7 @@ export class AuthService{
     private authenticatedSub = new Subject<boolean>();
     private isAuthenticated = false;
     private logoutTimer: any;
+    private user: any;
 
     getIsAuthenticated(){
         return this.isAuthenticated;
@@ -26,10 +27,14 @@ export class AuthService{
     getUserId(){
         return this.user_id;
     }
+
+    getUser(){
+        return this.user;
+    }
     
     constructor(private http: HttpClient, private router: Router){}
     
-    signupUser(email: string, password: string, firstname: string, lastname: string, phone:string){
+    signupUser(email: string, password: string, firstname: string, lastname: string, phone:string): Observable<any> {
         let isAdmin = 'false';
         if(email=='testadmin@yahoo.com'){
             isAdmin = 'true';
@@ -39,10 +44,11 @@ export class AuthService{
 
         console.log('authData ', authData)
         
-        this.http.post('http://localhost:3000/sign-up/', authData).subscribe(res => {
-            console.log(res);
-            return res;
-        })
+        // this.http.post('http://localhost:3000/sign-up/', authData).subscribe(res => {
+        //     console.log('res ', res);
+        // })
+
+        return this.http.post('http://localhost:3000/sign-up/', authData)
     }
 
     loginUser(email: string, password: string){
@@ -50,12 +56,14 @@ export class AuthService{
 
         console.log('authData in login ', authData)
 
-        this.http.post<{token: string, expiresIn: number, user_id: string}>('http://localhost:3000/login/', authData)
+        this.http.post<{token: string, expiresIn: number, user_id: string, user: any}>('http://localhost:3000/login/', authData)
             .subscribe(res => {
                 this.token = res.token;
                 this.user_id = res.user_id;
-                console.log('token ', this.token)
-                console.log('user_id ', res.user_id)
+                this.user = res.user;
+                console.log('token ', this.token);
+                console.log('user_id ', res.user_id);
+                console.log('user ', this.user);
                 if(this.token){
                     this.authenticatedSub.next(true);
                     this.isAuthenticated = true;

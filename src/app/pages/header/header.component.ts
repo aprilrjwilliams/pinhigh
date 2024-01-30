@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private authenticationSub: Subscription | undefined;
   userAuthenticated = true;
+  user: any;
 
   constructor(private authService: AuthService) { }
 
@@ -26,11 +27,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.userAuthenticated = this.authService.getIsAuthenticated();
     this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
       this.userAuthenticated = status;
+      this.user = this.authService.getUser();
+      console.log('user in header ', this.user)
     })
+
   }
 
   logout(){
     this.authService.logout();
   }
+
+  //TODO add admin pages
 
 }
