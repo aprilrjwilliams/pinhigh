@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { map, Subject } from "rxjs";
+import { map, Observable, Subject } from "rxjs";
 import { Timeslot } from "./timeslot.model";
 
 @Injectable({providedIn:"root"})
@@ -29,8 +29,17 @@ export class TimeslotDataService{
         })
     }
 
-    getTimeslots(date: string, bay: string){
-        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {date: date, bay: bay}})
+    getTimeslots(date: string, bay?: string){
+        let params = {}
+        if(bay){
+            params = {date: date, bay: bay}
+        } else {
+            params = {date: date}
+        }
+
+        console.log('params ', params)
+
+        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: params})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
             return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string, bay: string}) => {
@@ -82,6 +91,34 @@ export class TimeslotDataService{
             console.log(timeslot);
             // this.getTimeslots();
         })
+    }
+
+
+    // getUserById(id: string){
+    //     console.log('in getUserById ', id)
+    //     this.http.get<{users: any}>('http://localhost:3000/usermodels', {params: {_id: id}})
+    //     .pipe(map((responseData) => {
+    //         console.log('responseData ', responseData)
+    //         return responseData.users.map((user: {email: string, password: string, firstname: string, lastname: string, phone: string, isAdmin: string}) => {
+    //             return {
+    //                 email: user.email,
+    //                 password: user.password,
+    //                 firstname: user.firstname,
+    //                 lastname: user.lastname,
+    //                 phone: user.phone,
+    //                 isAdmin: user.isAdmin,
+    //             }
+    //         })
+    //     }))
+    //     .subscribe((updateResponse) => {
+    //         this.userTimeslots = updateResponse;
+    //         this.timeslotSubject.next(this.userTimeslots);
+    //     })
+    // }
+
+    getUserById(id: string): Observable<any>{
+        console.log('in getUserById ', id)
+        return this.http.get<{users: any}>('http://localhost:3000/usermodels', {params: {_id: id}})
     }
 
 

@@ -12,6 +12,7 @@ export class AuthService{
     private user_id: string = '';
     private authenticatedSub = new Subject<boolean>();
     private isAuthenticated = false;
+    public isAdmin = false;
     private logoutTimer: any;
     private user: any;
 
@@ -30,6 +31,10 @@ export class AuthService{
 
     getUser(){
         return this.user;
+    }
+
+    getIsAdmin(){
+        return this.isAdmin;
     }
     
     constructor(private http: HttpClient, private router: Router){}
@@ -67,6 +72,7 @@ export class AuthService{
                 if(this.token){
                     this.authenticatedSub.next(true);
                     this.isAuthenticated = true;
+                    this.isAdmin = this.user == 'true' ? true : false;
                     this.router.navigate(['/']);
                     this.logoutTimer = setTimeout(() => {this.logout()}, res.expiresIn * 1000);
                     const now = new Date();

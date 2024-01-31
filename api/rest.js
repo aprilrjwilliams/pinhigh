@@ -89,11 +89,14 @@ app.get('/timeslots',(req, res, next) => {
     let timeslot = {};
     if(req.query.user_id){
         timeslot = {user_id: req.query.user_id}
-        console.log('new timeslot ', timeslot)
-    } else {
+    } else if(req.query.bay) {
         timeslot = {date: req.query.date, bay: req.query.bay}
-        console.log('new timeslot ', timeslot)
+    } else {
+        timeslot = {date: req.query.date}
     }
+
+    console.log('new timeslot ', timeslot)
+
     TimeslotModel.find(timeslot)
     .then((data) => {
         console.log('data ', data)
@@ -168,6 +171,17 @@ app.post('/login', (req,res) => {
         return res.status(401).json({
             message: 'Error with authentication'
         })
+    })
+})
+
+app.get('/usermodels',(req, res, next) => {
+    UserModel.find()
+    .then((data) => {
+        console.log('data ', data)
+        res.json({'users': data});
+    })
+    .catch(() => {
+        console.log('Error fetching user')
     })
 })
 

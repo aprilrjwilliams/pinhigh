@@ -13,6 +13,7 @@ import { BookingsComponent } from './pages/bookings/bookings.component';
 import { ReservationComponent } from './pages/reservation/reservation.component'
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
+import { AdminReservationsComponent } from './pages/admin-reservations/admin-reservations.component'
 import { AuthGuard } from './shared/route-guard';
 
 export const routes: Routes = [
@@ -66,6 +67,11 @@ export const routes: Routes = [
     {
       path: 'success',
       component: SuccessPageComponent,
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'admin-res',
+      component: AdminReservationsComponent,
       canActivate: [AuthGuard],
     },
     { path: '**', redirectTo: '' }

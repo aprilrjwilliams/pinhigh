@@ -15,7 +15,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private authenticationSub: Subscription | undefined;
   userAuthenticated = true;
+  adminUser= false;
   user: any;
+  
 
   constructor(private authService: AuthService) { }
 
@@ -25,11 +27,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userAuthenticated = this.authService.getIsAuthenticated();
+    this.adminUser = this.authService.getIsAdmin();
     this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
       this.userAuthenticated = status;
       this.user = this.authService.getUser();
       console.log('user in header ', this.user)
+      this.adminUser = this.user?.isAdmin == 'true' ? true : false;
+      console.log('adminUser ', this.adminUser)
     })
+
+    console.log('adminUser ', this.adminUser)
 
   }
 
@@ -37,6 +44,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  //TODO add admin pages
+  //TODO fix admin 
 
 }
