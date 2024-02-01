@@ -91,3 +91,7 @@ a:hover {
     text-decoration: underline;
     text-decoration: pointer;
 }
+
+button:disabled{
+    background-color: lightgray;
+}

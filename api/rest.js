@@ -177,6 +177,7 @@ app.get("/usermodels", (req, res, next) => {
 });
 
 app.post("/reset-password", (req, res, next)=>{
+  console.log('in reset-pass')
   const token = req.body.token;
   const newPassword = req.body.password;
 
@@ -186,6 +187,7 @@ app.post("/reset-password", (req, res, next)=>{
       return err
     } else {
       const response = data;
+      console.log('response ', response)
 
       UserModel.findOne({ email: response.email })
       .then((user) => {

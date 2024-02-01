@@ -1,3 +1,11 @@
+.container{
+    margin: auto;
+    min-height: 50rem;
+    display: flex;
+    justify-content: center;
+}
+
+
 .login-wrap {
     padding: 30px;
     width: 100%;

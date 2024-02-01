@@ -123,13 +123,9 @@ export class AuthService {
 
   resetPassword(
     resetObj: any
-  ) {
+  ): Observable<any> {
     console.log('in reset password');
-    // return this.http.post("http://localhost:3000/reset-password/", resetObj);
-
-    this.http.post('http://localhost:3000/reset-password/', resetObj).subscribe(res => {
-        console.log('res ', res);
-    })
+    return this.http.post("http://localhost:3000/reset-password/", resetObj);
   }
 
 

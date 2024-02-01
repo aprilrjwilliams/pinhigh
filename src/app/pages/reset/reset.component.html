@@ -27,10 +27,11 @@
                   <label for="password">Password</label>
                 </div>
               </div>
-              <button class="btn btn-primary w-100 py-2" type="submit">
+              <button [disabled]='isLoading'class="btn btn-primary w-100 py-2" type="submit">
                 Submit
               </button>
             </form>
+            <p *ngIf="showSuccessMessage">Password change successful - redirecting to Login Page!</p>
           </div>
         </div>
       </div>
