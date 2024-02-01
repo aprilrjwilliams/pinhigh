@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable, Subject } from "rxjs";
-import { Timeslot } from "./timeslot.model";
+import { Timeslot } from "../models/timeslot.model";
 
 @Injectable({providedIn:"root"})
 export class TimeslotDataService{

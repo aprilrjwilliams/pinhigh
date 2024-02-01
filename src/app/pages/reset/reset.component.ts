@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { AuthService } from "../../shared/auth-service";
+import { AuthService } from "../../service/auth-service";
 import { RouterOutlet, RouterModule, ActivatedRoute, Router } from "@angular/router";
 import { CommonModule } from "@angular/common";
 // import { setTimeout } from "timers/promises";

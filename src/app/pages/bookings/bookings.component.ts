@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 // import { Timeslot } from './bookings.model'
-import { Timeslot } from "../../shared/timeslot.model";
-import { TimeslotDataService } from "../../shared/timeslot-data.component";
+import { Timeslot } from "../../models/timeslot.model";
+import { TimeslotDataService } from "../../service/timeslot-data.component";
 import { Subscription } from "rxjs";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { AuthService } from "../../shared/auth-service";
+import { AuthService } from "../../service/auth-service";
 import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-dialog.service"
 
 @Component({

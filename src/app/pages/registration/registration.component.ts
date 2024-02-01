@@ -6,7 +6,7 @@ import {
   FormsModule,
   ReactiveFormsModule,
 } from "@angular/forms";
-import { AuthService } from "../../shared/auth-service";
+import { AuthService } from "../../service/auth-service";
 import { Router } from "@angular/router";
 
 @Component({

@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Timeslot } from '../bookings/bookings.model';
-import { TimeslotDataService } from "../../shared/timeslot-data.component";
+import { TimeslotDataService } from "../../service/timeslot-data.component";
 import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-dialog.service"
-import { AuthService } from '../../shared/auth-service';
+import { AuthService } from '../../service/auth-service';
 import { Subscription } from "rxjs";
 
 @Component({

@@ -1,16 +1,16 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { Timeslot } from '../bookings/bookings.model';
-import { TimeslotDataService } from "../../shared/timeslot-data.component";
+import { TimeslotDataService } from "../../service/timeslot-data.component";
 import { ConfirmationDialogService } from "../confirmation-dialog/confirmation-dialog.service"
-import { AuthService } from '../../shared/auth-service';
-import { UserService } from '../../shared/user-service';
+import { AuthService } from '../../service/auth-service';
+import { UserService } from '../../service/user-service';
 import { Subscription } from "rxjs";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from "@angular/material/core";
 import { MatFormField } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { UserModel } from "../../shared/user-model";
+import { UserModel } from "../../models/user-model";
 
 @Component({
   selector: 'app-admin-reservations',

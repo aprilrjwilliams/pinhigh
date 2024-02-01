@@ -17,7 +17,7 @@ import { FooterComponent } from './pages/footer/footer.component';
 
 import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthInterceptor } from './shared/auth-interceptor';
+import { AuthInterceptor } from './service/auth-interceptor';
 
 
 

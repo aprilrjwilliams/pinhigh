@@ -2,9 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';  
 import { RouterOutlet, RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from '../../shared/auth-service';
+import { AuthService } from '../../service/auth-service';
 import { BookingsComponent } from '../bookings/bookings.component';
-import { AuthInterceptor } from '../../shared/auth-interceptor';
+import { AuthInterceptor } from '../../service/auth-interceptor';
 
 
 @Component({

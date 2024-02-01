@@ -15,7 +15,7 @@ import { PaymentPageComponent } from './pages/payment-page/payment-page.componen
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
 import { AdminReservationsComponent } from './pages/admin-reservations/admin-reservations.component'
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component'
-import { AuthGuard } from './shared/route-guard';
+import { AuthGuard } from './service/route-guard';
 import { ResetComponent } from './pages/reset/reset.component'
 
 export const routes: Routes = [
