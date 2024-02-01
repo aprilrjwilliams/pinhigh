@@ -17,7 +17,7 @@ app2.use((req, res, next) => {
 
 app2.use(express.json());
 
-app2.use("/api", require("./app.routes"));
+app2.use("/api", require("./routes/stripe.js"));
 
 app2.listen(4000, () => {
     console.log("Started server on 4000");   

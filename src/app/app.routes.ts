@@ -14,7 +14,9 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { SuccessPageComponent } from './pages/success-page/success-page.component';
 import { AdminReservationsComponent } from './pages/admin-reservations/admin-reservations.component'
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component'
 import { AuthGuard } from './shared/route-guard';
+import { ResetComponent } from './pages/reset/reset.component'
 
 export const routes: Routes = [
     {
@@ -73,6 +75,14 @@ export const routes: Routes = [
       path: 'admin-res',
       component: AdminReservationsComponent,
       canActivate: [AuthGuard],
+    },
+    {
+      path: 'forgot-password',
+      component: ForgotPasswordComponent,
+    },
+    {
+      path: 'reset/:token',
+      component: ResetComponent
     },
     { path: '**', redirectTo: '' }
 ];

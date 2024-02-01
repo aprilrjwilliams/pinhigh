@@ -1,4 +1,4 @@
-const { STRIPE_CONFIG} = require("./app.config");
+const { STRIPE_CONFIG} = require("../app.config");
 
 const stripe = require("stripe")(STRIPE_CONFIG.SECRET_KEY);
 

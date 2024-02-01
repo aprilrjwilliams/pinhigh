@@ -14,9 +14,10 @@ import { AuthService } from '../../shared/auth-service';
 export class HeaderComponent implements OnInit, OnDestroy {
 
   private authenticationSub: Subscription | undefined;
-  userAuthenticated = true;
-  adminUser= false;
-  user: any;
+  private adminSub: Subscription | undefined;
+  public userAuthenticated = true;
+  public adminUser = true;
+  public user: any;
   
 
   constructor(private authService: AuthService) { }
@@ -27,15 +28,16 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.userAuthenticated = this.authService.getIsAuthenticated();
-    this.adminUser = this.authService.getIsAdmin();
     this.authenticationSub = this.authService.getAuthenticatedSub().subscribe(status => {
       this.userAuthenticated = status;
-      this.user = this.authService.getUser();
-      console.log('user in header ', this.user)
-      this.adminUser = this.user?.isAdmin == 'true' ? true : false;
-      console.log('adminUser ', this.adminUser)
     })
 
+    console.log('userAuthenticated ', this.userAuthenticated)
+
+    this.adminUser = this.authService.getIsAdmin();
+    this.adminSub = this.authService.getAdminSub().subscribe(status => {
+      this.adminUser = status;
+    })
     console.log('adminUser ', this.adminUser)
 
   }

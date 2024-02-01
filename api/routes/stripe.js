@@ -1,4 +1,4 @@
-const stripeController = require("./stripe.controller");
+const stripeController = require("../controllers/stripe.controller");
 
 const express = require("express");
 const router = express.Router();

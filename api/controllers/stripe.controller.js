@@ -1,4 +1,4 @@
-const stripeServices = require('./stripe.services')
+const stripeServices = require('../services/stripe.services')
 
 
 exports.createPaymentSession = (req, res, next) => {

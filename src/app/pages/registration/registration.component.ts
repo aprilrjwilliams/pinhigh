@@ -21,6 +21,8 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  //TODO add - - to phone number field
+
   ngOnInit(): void {
     this.signupForm = new FormGroup({
       email: new FormControl("", [Validators.required]),
