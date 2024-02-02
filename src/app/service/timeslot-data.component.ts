@@ -10,12 +10,14 @@ export class TimeslotDataService{
 
     constructor(private http: HttpClient){}
 
-    updateTimeslot(id: string, timeslot: Timeslot) {
-      this.http.put<{message: string}>('http://localhost:3000/update-timeslot/' + id, timeslot).subscribe((jsonData) => {
-        console.log(jsonData.message);
-        // this.getTimeslots();
-      })
-    }
+    
+    //TODO remove - not using
+    // updateTimeslot(id: string, timeslot: Timeslot) {
+    //   this.http.put<{message: string}>('http://localhost:3000/update-timeslot/' + id, timeslot).subscribe((jsonData) => {
+    //     console.log(jsonData.message);
+    //     // this.getTimeslots();
+    //   })
+    // }
     
     public timeslotSubject = new Subject<Timeslot[]>();
     private timeslots: Timeslot[] = [];

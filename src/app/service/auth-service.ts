@@ -65,10 +65,6 @@ export class AuthService {
 
     console.log("authData ", authData);
 
-    // this.http.post('http://localhost:3000/sign-up/', authData).subscribe(res => {
-    //     console.log('res ', res);
-    // })
-
     return this.http.post("http://localhost:3000/sign-up/", authData);
   }
 
