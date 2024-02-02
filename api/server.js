@@ -51,6 +51,7 @@ const connectMongoDB = async ()=>{
 app.use("", require("./routes/timeslot.js"))
 app.use("", require("./routes/user.js"))
 app.use("", require("./routes/auth.js"))
+app.use("/api", require("./routes/stripe.js"));
 
 app.listen(3000, ()=>{
     connectMongoDB();
