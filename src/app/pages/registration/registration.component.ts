@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {}
 
-  //TODO add - - to phone number field
+  //TODO add - - to phone number field restriction!!
 
   ngOnInit(): void {
     this.signupForm = new FormGroup({

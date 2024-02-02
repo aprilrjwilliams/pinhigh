@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.center {
+    text-align: center;
+}
+
 
 .login-wrap {
     padding: 30px;
@@ -71,7 +75,7 @@ button, button:hover{
 
 .form-control{
     min-height: 50px;
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 .btn{
@@ -79,11 +83,15 @@ button, button:hover{
 }
 
 a{
-    color: black;
+    color: #555;;
     text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
     text-decoration: pointer;
+}
+
+.form-floating > .form-control:not(:placeholder-shown){
+    padding-top: 2.5rem;
 }
