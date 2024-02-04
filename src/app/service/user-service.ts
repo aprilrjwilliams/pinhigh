@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable, Subject } from "rxjs";
 import { UserModel } from "../models/user-model";
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn:"root"})
 export class UserService{
@@ -14,12 +15,12 @@ export class UserService{
 
     getUserById(id: string): Observable<any>{
         console.log('in getUserById ', id)
-        return this.http.get<{users: any}>('http://localhost:3000/usermodels', {params: {_id: id}})
+        return this.http.get<{users: any}>(environment.apiUrl + '/usermodels', {params: {_id: id}})
     }
 
     getUsers(){
         console.log('in getUsers')
-        this.http.get<{users: any}>('http://localhost:3000/usermodels', {params: {}})
+        this.http.get<{users: any}>(environment.apiUrl + '/usermodels', {params: {}})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
             return responseData.users.map((user: {_id: string;

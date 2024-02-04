@@ -23,6 +23,7 @@ import { AuthService } from './service/auth-service';
 export class AppComponent implements OnInit{
   title = 'pinhigh';
 
+  // readonly APIUrl = 'http://localhost:5038/api/pinhighdb/'
   readonly APIUrl = 'http://localhost:5038/api/pinhighdb/'
 
   constructor(private http:HttpClient, private authService: AuthService){

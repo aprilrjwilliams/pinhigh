@@ -56,6 +56,7 @@ app.use("/api", require("./routes/stripe.js"));
 let port = process.env.NODE_ENV === 'production' ? 80 : 4000;
 
 app.listen(port, ()=>{
+    console.log('port ', port);
     connectMongoDB();
     console.log('connected to backend')
 })

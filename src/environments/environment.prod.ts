@@ -1,6 +1,6 @@
 export const environment = {
     production: true,
-    apiUrl: 'http://localhost:4000',
+    apiUrl: '/api',
     priceId: 'price_1Odac1EutSUlLZ7PVoRTf7pA',
     stripeKey: "",
 };

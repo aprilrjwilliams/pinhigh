@@ -4,6 +4,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, Subject } from "rxjs";
 import { AuthModel } from "../models/auth-model";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
@@ -65,7 +66,7 @@ export class AuthService {
 
     console.log("authData ", authData);
 
-    return this.http.post("http://localhost:3000/sign-up/", authData);
+    return this.http.post(environment.apiUrl + "/sign-up/", authData);
   }
 
   loginUser(email: string, password: string) {
@@ -73,7 +74,7 @@ export class AuthService {
 
     this.http
       .post<{ token: string; expiresIn: number; user_id: string; user: any }>(
-        "http://localhost:3000/login/",
+        environment.apiUrl + "/login/",
         authData
       )
       .subscribe((res) => {
@@ -108,7 +109,7 @@ export class AuthService {
     email: string
   ): Observable<any> {
     console.log('in authservice sendEmail')
-    return this.http.post("http://localhost:3000/send-email/", {email: email});
+    return this.http.post(environment.apiUrl +"/send-email/", {email: email});
 
     // this.http.post('http://localhost:3000/send-email/', {email: email}).subscribe(res => {
     //     console.log('res ', res);
@@ -121,7 +122,7 @@ export class AuthService {
     resetObj: any
   ): Observable<any> {
     console.log('in reset password');
-    return this.http.post("http://localhost:3000/reset-password/", resetObj);
+    return this.http.post(environment.apiUrl + "/reset-password/", resetObj);
   }
 
 

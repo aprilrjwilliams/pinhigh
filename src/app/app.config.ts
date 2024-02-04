@@ -11,5 +11,5 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideAnimations(),
     provideAnimations()
-]
+  ]
 };

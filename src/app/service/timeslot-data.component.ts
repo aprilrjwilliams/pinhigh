@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { map, Observable, Subject } from "rxjs";
 import { Timeslot } from "../models/timeslot.model";
+import { environment } from "../../environments/environment";
 
 @Injectable({providedIn:"root"})
 export class TimeslotDataService{
@@ -25,7 +26,7 @@ export class TimeslotDataService{
 
     onDeleteTimeslot(id: string){
         
-        this.http.delete<{message: string}>('http://localhost:3000/remove-timeslot/' + id).subscribe((jsonData) => {
+        this.http.delete<{message: string}>(environment.apiUrl + '/remove-timeslot/' + id).subscribe((jsonData) => {
         console.log(jsonData.message);
         // this.getTimeslots();
         })
@@ -41,7 +42,7 @@ export class TimeslotDataService{
 
         console.log('params ', params)
 
-        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: params})
+        this.http.get<{timeslots: any}>(environment.apiUrl + '/timeslots', {params: params})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
             return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string, bay: string}) => {
@@ -61,7 +62,7 @@ export class TimeslotDataService{
     }
 
     getTimeslotsbyUser(user_id: string){
-        this.http.get<{timeslots: any}>('http://localhost:3000/timeslots', {params: {user_id: user_id}})
+        this.http.get<{timeslots: any}>(environment.apiUrl + '/timeslots', {params: {user_id: user_id}})
         .pipe(map((responseData) => {
             console.log('responseData ', responseData)
             return responseData.timeslots.map((timeslot: {date: string; startTime: string; _id: string, user_id: string, bay: string}) => {
@@ -89,7 +90,7 @@ export class TimeslotDataService{
 
     onAddTimeslot(timeslot: Timeslot){
         console.log('in shared - onAddTimeslot ', timeslot)
-        this.http.post<{message: string}>('http://localhost:3000/add-timeslot', timeslot).subscribe((jsonData) => {
+        this.http.post<{message: string}>(environment.apiUrl + '/add-timeslot', timeslot).subscribe((jsonData) => {
             console.log(timeslot);
             // this.getTimeslots();
         })
@@ -120,7 +121,7 @@ export class TimeslotDataService{
 
     getUserById(id: string): Observable<any>{
         console.log('in getUserById ', id)
-        return this.http.get<{users: any}>('http://localhost:3000/usermodels', {params: {_id: id}})
+        return this.http.get<{users: any}>(environment.apiUrl + '/usermodels', {params: {_id: id}})
     }
 
 
