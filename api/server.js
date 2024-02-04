@@ -53,7 +53,9 @@ app.use("", require("./routes/user.js"))
 app.use("", require("./routes/auth.js"))
 app.use("/api", require("./routes/stripe.js"));
 
-app.listen(3000, ()=>{
+let port = process.env.NODE_ENV === 'production' ? 80 : 4000;
+
+app.listen(port, ()=>{
     connectMongoDB();
     console.log('connected to backend')
 })

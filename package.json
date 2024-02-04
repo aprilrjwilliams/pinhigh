@@ -8,6 +8,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aprilrjwilliams/pinhigh.git"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "^17.0.0",
